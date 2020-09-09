@@ -15,11 +15,11 @@ let insertY = ['the soup kitchen', 'Disneyland', 'the White House'];
 
 let insertZ = ['spontaneously combusted', 'melted into a puddle on the sidewalk', 'turned into a slug and crawled away'];
 
-let newStory = storyText;
-
 randomize.addEventListener('click', result);
 
 function result() {
+
+  let newStory = storyText;
 
   if(customName.value !== '') {
     let name = customName.value;
@@ -27,14 +27,16 @@ function result() {
   }
 
   if(document.getElementById("uk").checked) {
-    let weight = Math.round(300);
-    let temperature =  Math.round(94);
+    let weight = Math.round(300/14)+' stone';
+    let temperature =  Math.round((94-32)*5/9)+' celsius';
+    newStory = newStory.replace('300 pounds',weight);
+    newStory = newStory.replace('94 fahrenheit',temperature);
   }
   
   newStory = newStory.replace(':insertx:',randomValueFromArray(insertX));
   newStory = newStory.replace(':insertx:',randomValueFromArray(insertX));
   newStory = newStory.replace(':inserty:',randomValueFromArray(insertY));
   newStory = newStory.replace(':insertz:',randomValueFromArray(insertZ));
-  story.textContent = newStory.replace(':insertx:',name).replace(':insertx:',name).replace(':inserty:',randomValueFromArray(insertY)).replace(':insertz:',randomValueFromArray(insertZ));
+  story.textContent = newStory
   story.style.visibility = 'visible';
 }
